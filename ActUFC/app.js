@@ -4,11 +4,45 @@ const port = process.env.PORT || 8080;
 
 const knexfile = require('./knexfile.js');
 const knex = require('knex')(knexfile.development);
-
-app.use(express.json());
-
 app.use(express.static('public'));
 app.use(express.json());
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/HTML/Accueil.html');
+  });
+
+app.get('/About.html', (req, res) => {
+    res.sendFile(__dirname + '/public/HTML/About.html');
+  }
+);
+app.get('/Accueil.html', (req, res) => {
+    res.sendFile(__dirname + '/public/HTML/Accueil.html');
+  });
+
+
+app.get('/News.html', (req, res) => {
+    res.sendFile(__dirname + '/public/HTML/News.html');
+  }
+);
+
+app.get('/Quizz.html', (req, res) => {
+    res.sendFile(__dirname + '/public/HTML/Quizz.html');
+  });
+
+app.get('/Ranking.html', (req, res) => {
+    res.sendFile(__dirname + '/public/HTML/Ranking.html');
+  }
+);
+
+app.get('/Suggestions.html', (req, res) => {
+    res.sendFile(__dirname + '/public/HTML/Suggestions.html');
+  }
+);
+
+app.get('/YourArticle.html', (req, res) => {
+    res.sendFile(__dirname + '/public/HTML/YourArticle.html');
+  }
+);
 
 app.listen(port, () => {
     console.log(`Server is active. port : ${port}`);
