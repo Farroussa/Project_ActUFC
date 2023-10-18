@@ -1,17 +1,18 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 const knexfile = require('./knexfile.js');
 const knex = require('knex')(knexfile.development);
 
 app.use(express.json());
 
-app.use(express.static('public'));
-app.use(express.json());
+app.use(express.static('public')); // Serve static files from the 'public' directory
+
+
 
 app.listen(port, () => {
-    console.log(`Server is active. port : ${port}`);
+  console.log(`Server is active. port : ${port}`);
 });
 
 module.exports = app;
