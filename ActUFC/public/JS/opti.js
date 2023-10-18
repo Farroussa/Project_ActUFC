@@ -197,7 +197,3 @@ function accueil(){
 accueil();
 playquizz();
 loadQuestion();
-
-
-
-

@@ -18,7 +18,7 @@ app.listen(port, () => {
 
 module.exports = app;
 
-/*
+
 // Path: knex.js
 // creation
 app.post('/createComment', (req, res) => {
@@ -41,7 +41,7 @@ app.post('/createComment', (req, res) => {
             res.status(500).json({ error: 'Failed to insert comment' });
         });
 });
-
+/*
 //retrieval  
 app.get('/searchFighters', (req, res) => {
     const searchTerm = req.query.firstName;
@@ -56,22 +56,4 @@ app.get('/searchFighters', (req, res) => {
             res.status(500).json({ error: 'Failed to perform search' });
         });
 });
-
-//update
-app.put('/updateEvent/:id', async (req, res) => {
-    const { id } = req.params;
-    const changes = req.body;
-  
-    try {
-      await knex('Events')
-        .where({ EventID: id })
-        .update(changes);
-  
-      res.json({ success: true });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false, error: 'Failed to update event' });
-    }
-  });
-
   */
