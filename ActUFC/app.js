@@ -6,18 +6,12 @@ const knexfile = require('./knexfile.js');
 const knex = require('knex')(knexfile.development);
 
 app.use(express.json());
-
-app.use(express.static('public')); // Serve static files from the 'public' directory
-
-// Catch-all route to serve the main HTML file
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/HTML/Accueil.html'); // Serve Accueil.html
-  });
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/HTML/Accueil.html');
   });
-  
+
 app.listen(port, () => {
   console.log(`Server is active. port : ${port}`);
 });
