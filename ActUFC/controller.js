@@ -1,6 +1,8 @@
+
+/*
 const knexfile = require('./knexfile.js');
 const knex = require('knex')(knexfile.development);;
-  
+
 const GetUFC = (req, res) => {
     console.log("the fighters are :");
 
@@ -52,9 +54,19 @@ knex('Comments')
         throw error;
     });
 };
+*/
+
+const pool = require("./db");
+
+const GetUFC = (req,res) =>{ 
+    pool.query("SELECT * FROM Fighters", (error, results)=>{ 
+        if (error) throw error;
+        res.status(200).json(results.rows)
+    });
+};
 
 module.exports = {
     GetUFC,
-    addFighter,
-    addComment,
+    //addFighter,
+    //addComment,
 };

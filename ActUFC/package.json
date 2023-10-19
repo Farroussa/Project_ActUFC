@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "my-script": "node myScript.js"
+    "my-script": "node myScript.js",
+    "serve": "vue-cli-service serve"
   },
   "keywords": [],
   "author": "",
