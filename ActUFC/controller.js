@@ -52,8 +52,29 @@ knex('Comments')
     });
 };
 
+const addCommentBlog = (data) => {
+    const { CommenterNickname, CommentDate, CommentText } = data;
+
+    return knex('Comments')
+        .insert({
+            CommenterNickname,
+            CommentDate,
+            CommentText,
+        })
+        .then(() => {
+            // Comment added successfully
+        })
+        .catch((error) => {
+            console.error(error);
+            throw error; // Make sure to re-throw the error to propagate it to the promise chain
+        });
+};
+
+
+
 module.exports = {
 GetUFC,
 addFighter,
 addComment,
+addCommentBlog
 };

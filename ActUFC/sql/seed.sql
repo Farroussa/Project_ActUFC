@@ -11,10 +11,10 @@ VALUES
 
 INSERT INTO NewsArticles (ArticleID, Title, Author, PublicationDate, Content, EventID, FighterID)
 VALUES
-    (1, 'The news of the 30/09/2023', 'Nael', '19931113', 'A lot happened this week, lets check it out together', 1, NULL),
-    (2, 'Who will win this year?', 'CLarisse', '20200520', 'The best fighters are in competition, who will win?', 2, 2);
+    (1, 'The news of the 30/09/2023', 'Nael', '1993-11-13', 'A lot happened this week, lets check it out together', 1, NULL),
+    (2, 'Who will win this year?', 'Clarisse', '2020-05-20', 'The best fighters are in competition, who will win?', 2, 2);
 
 INSERT INTO Comments (CommentID, ArticleID, CommenterNickname, CommentDate, CommentText)
 VALUES
-    (1, 1, 'FARES', '20230521', 'COOL FIGHT BROS'),
-    (2, 2, 'ARTHUR', '20230522', 'i love mma');
+    (1, 1, 'FARES', '2023-05-21', 'COOL FIGHT BROS'),
+    (2, 2, 'ARTHUR', '2023-05-22', 'i love mma');

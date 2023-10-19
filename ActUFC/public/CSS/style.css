@@ -252,6 +252,10 @@ a[download],a {
     display: none;
 }
 
+#messageInput {
+    margin-top: 10px;
+}
+
 
 @media screen and (max-width: 1000px) {
     .container{
@@ -427,5 +431,6 @@ a[download],a {
         display: flex;
         justify-content: center;
     }
+
 }
 

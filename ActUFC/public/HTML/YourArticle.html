@@ -105,22 +105,92 @@
             <div id="messageContainer">
                 <!-- Zone où les messages seront affichés -->
             </div>
-            <input type="text" id="messageInput" placeholder="Enter your message">
-            <button id="sendmsg" onclick="apparaitremsg()">Send a message</button>
-            <button id="send" onclick="envoyerMessage()">Send</button>
+            <input type="text" id="commenterNickname" placeholder="Enter your nickname">
+            <input type="text" id="commentText" placeholder="Enter your comment">
+            <button id="addComment" onclick="addCommentToBlog()">Add Comment</button>
+
 
             <script>
                 const msgInput = document.getElementById('messageInput');
                 msgInput.style.display = "none";
+                const usernameInput = document.getElementById('username');
+                usernameInput.style.display = "none";
                 const sendmsg = document.getElementById('sendmsg');
                 const send = document.getElementById('send');
                 send.style.display = "none";
 
                 function apparaitremsg(){
+                    usernameInput.style.display = "";
                     msgInput.style.display = "";
                     sendmsg.style.display = "none";
                     send.style.display = "";
                 }
+
+                function addCommentToBlog() {
+                    const commenterNicknameInput = document.getElementById('commenterNickname');
+                    const commentTextInput = document.getElementById('commentText');
+
+                    const commenterNickname = commenterNicknameInput.value;
+                    const commentText = commentTextInput.value;
+
+                    if (!commenterNickname || !commentText) {
+                        alert('Please fill in both fields.');
+                        return;
+                    }
+
+                    const commentData = {
+                        CommenterNickname: commenterNickname,
+                        CommentDate: new Date().toISOString(), // You can set the date however you want
+                        CommentText: commentText,
+                    };
+
+                    // Send the comment data to your backend
+                    fetch('/addCommentBlog', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(commentData),
+                    })
+                        .then((response) => {
+                            if (response.status === 201) {
+                                alert('Comment added successfully');
+                                commenterNicknameInput.value = '';
+                                commentTextInput.value = '';
+                            } else {
+                                alert('Failed to add the comment');
+                            }
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                }
+
+
+                function sendToDatabase() {
+                    sendmsg.style.display = "none";
+                    msgInput.style.display = "none";
+                    send.style.display = "none";
+                    usernameInput.style.display = "none";
+                    sendmsg.style.display = "";
+
+                    const commenterNickname = document.getElementById('username').value;
+                    const commentText = document.getElementById('messageInput').value;
+                    const commentDate = new Date().toISOString();
+
+                    const data = {
+                        CommenterNickname: commenterNickname,
+                        CommentDate: commentDate,
+                        CommentText: commentText
+                    };
+
+                    if (commentText !== "" && commenterNickname !== "") {
+                        // Call the addCommentBlog function from controller.js
+                        addCommentBlog(data); // Pass the data as an argument
+                    }
+                }
+            
+                
                 function envoyerMessage() {
                     sendmsg.style.display="none";
                     var messageInput = document.getElementById("messageInput");
