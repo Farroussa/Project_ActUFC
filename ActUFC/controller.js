@@ -15,25 +15,6 @@ knex
     });
 };
 
-const addFighter = (req, res) => {
-const { FirstName, LastName, Nickname, WeightClass, Country } = req.body;
-
-knex('fighters') // Replace 'fighters' with the actual name of your table
-    .insert({
-    FirstName,
-    LastName,
-    Nickname,
-    WeightClass,
-    Country,
-    })
-    .then(() => {
-    res.status(201).send('Fighter added !');
-    })
-    .catch((error) => {
-    throw error;
-    });
-};
-
 const addComment = (req, res) => {
 const { ArticleID, CommenterNickname, CommentDate, CommentText } = req.body;
 
@@ -73,7 +54,6 @@ const addCommentBlog = (data) => {
 
 module.exports = {
 GetUFC,
-addFighter,
 addComment,
 addCommentBlog
 };

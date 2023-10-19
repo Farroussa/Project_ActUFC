@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Ranking - Act'UFC</title>
     <link rel= "stylesheet" href="../CSS/style.css">
-    <script src="../JS/opti.js" async></script>
+    <script src="../JS/script.js" async></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -35,7 +35,13 @@
         </div>
     </header>
     <main>
-        <div class="container">
+        <h1>Search your favourite fighter !</h1><br>
+        <form action="/search" method="get">
+            <input type="text" name="q" placeholder="Search..." />
+            <input type="submit" value="Search" />
+        </form>
+        <br><br>
+        <div class="container"> 
             <div class="table-container">
                 <table>
                     <caption>UFC Pound for Pound ranking</caption>
