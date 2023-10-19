@@ -1,6 +1,8 @@
 const express = require('express');
 const UFCRoutes = require('./routes');
 const { addCommentBlog } = require('./controller.js');
+const knexfile = require('./knexfile.js');
+const knex = require('knex')(knexfile.development);
 
 const app = express();
 const port = process.env.PORT || 3000;

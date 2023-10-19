@@ -107,7 +107,7 @@
             </div>
             <input type="text" id="commenterNickname" placeholder="Enter your nickname">
             <input type="text" id="commentText" placeholder="Enter your comment">
-            <button id="addComment" onclick="addCommentToBlog()">Add Comment</button>
+            <button id="addComment" onclick=addCommentToBlog()>Add Comment</button>
 
 
             <script>
@@ -149,9 +149,7 @@
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        addCommentBlog(commentData),
                         body: JSON.stringify(commentData),
-                        
                     })
                         .then((response) => {
                             if (response.status === 201) {

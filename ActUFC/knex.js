@@ -1,10 +1,10 @@
 const knex = require('knex')({
-    client: 'postgresql',
+    client: 'pg',
     connection: {
       host: 'localhost',
-      port: 6960,
+      port: 5432,
       user: 'postgres',
-      password: '22042003',
+      password: 'mdp',
       database: 'ActUFC'
     }
   });
