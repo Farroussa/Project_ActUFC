@@ -92,13 +92,23 @@ function loadQuestion() {
         li.style.cursor='pointer';
         li.style.fontWeight='bold';
         li.addEventListener('click', function() {
-            submitAnswer(index);
+            if (cpt === 0) {
+                submitAnswer(index);
+                cpt = 1;
+            }
+            else {
+                reponseElement.style.color='darkred';
+                reponseElement.textContent ='You need to go to the next question';
+            }
+
         });
+        cpt = 0;
         choicesElement.appendChild(li);
     });
     showScore();
 }
 
+var cpt = 0;
 
 function submitAnswer(choiceIndex) {
     boxscore.style.display='';
