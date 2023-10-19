@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+//this is our 1st API it goes into the database and gets the fighters that you look for
 const getUFC = () => {
     fetch('/getUFC', { method: 'GET' })
         .then(response => {
