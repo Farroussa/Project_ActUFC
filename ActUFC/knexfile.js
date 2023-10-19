@@ -9,17 +9,17 @@ module.exports = {
     client: 'pg',
     connection: {
       user: 'postgres',
-      password: '22042003',
-      database: 'projectActUFC',
+      password: 'mdp',
+      database: 'ActUFC',
     }
   },
 
   staging: {
     client: 'pg',
     connection: {
-      database: 'projectActUFC',
+      database: 'ActUFC',
       user:     'postgres',
-      password: '22042003'
+      password: 'mdp'
     },
     pool: {
       min: 2,
@@ -33,9 +33,9 @@ module.exports = {
   production: {
     client: 'pg',
     connection: {
-      database: 'projectActUFC',
+      database: 'ActUFC',
       user:     'postgres',
-      password: '22042003'
+      password: 'mdp'
     },
     pool: {
       min: 2,
