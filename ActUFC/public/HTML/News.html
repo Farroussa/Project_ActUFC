@@ -5,6 +5,7 @@
     <title>News - Act'UFC</title>
     <link rel= "stylesheet" href="../CSS/style.css">
     <script src="../JS/script.js" async></script>
+    <script src="../../controller.js" async></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -37,6 +38,83 @@
 
 <!-- Main Content -->
   <main>
+
+    <script>
+      function addCommentToArticle(button) {
+          const commentForm = button.parentElement.querySelector('.comment-form');
+          const commentUsernameInput = document.getElementById('commentUsername');
+          const commentTextInput = document.getElementById('commentText');
+  
+          const commentUsername = commentUsernameInput.value;
+          const commentText = commentTextInput.value;
+  
+          if (!commentUsername || !commentText) {
+              alert('Please fill in both username and comment fields.');
+              return;
+          }
+  
+          const commentData = {
+              Username: commentUsername,
+              Comment: commentText,
+          };
+  
+          fetch('/addComment', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(commentData),
+          })
+              .then((response) => {
+                  if (response.status === 201) {
+                      alert('Comment added successfully');
+                      commentUsernameInput.value = '';
+                      commentTextInput.value = '';
+                  } else {
+                      commentUsernameInput.value = '';
+                      commentTextInput.value = '';
+                      envoyerMessage();
+                  }
+              })
+              .catch((error) => {
+                  console.error(error);
+              });
+      }
+
+      function envoyerMessage() {
+        const messageInput = document.getElementById("commentText0").value;
+        const messageText = messageInput.value;
+        console.log(messageText);
+        console.log(messageInput);
+        if (messageText !== "") {
+            var messageContainer = document.getElementById("messageContainer");
+            var messageDiv = document.createElement("div");
+            messageDiv.className = "box";
+            messageDiv.innerText = messageText;
+
+            // Insère le nouveau message au début de la liste des messages
+            messageContainer.insertBefore(messageDiv, messageContainer.firstChild);
+
+            // Efface le champ de texte après avoir envoyé le message
+            messageInput.value = "";
+            console.log("zdqzd");
+        }
+    }
+  
+      function toggleCommentForm(button) {
+          const commentForm = button.parentElement.querySelector('.comment-form');
+          const addCommentButton = button;
+  
+          if (commentForm.style.display === 'none' || commentForm.style.display === '') {
+              commentForm.style.display = 'block';
+              addCommentButton.textContent = 'Cancel';
+          } else {
+              commentForm.style.display = 'none';
+              addCommentButton.textContent = 'Add Comment';
+          }
+      }
+  </script>  
+
     <div class="container">
       <h1>Latest UFC News</h1>
       <section>
@@ -54,24 +132,25 @@
                 technique and strategic approach proved to be the deciding factor, ultimately leading him to
                 victory over Pereira.</p>
             </div>
+          
+            
+          
 
             <div class="article">
-              <button class="toggle-comment-form">Add Comment</button>
+              <button class="toggle-comment-form" onclick="toggleCommentForm(this)">Add Comment</button>
               <div class="comment-form" style="display: none;">
-                  <form>
-                      <label for="commenterNickname">Commenter Nickname:</label>
-                    <input type="text" id="commenterNickname" name="commenterNickname"><br>
-            
-                    <label for="commentDate">Comment Date:</label>
-                    <input type="text" id="commentDate" name="commentDate"><br>
-            
-                    <label for="commentText">Write your comment here:</label>
-                    <textarea id="commentText" name="commentText"></textarea><br>
-                  </form>
+                  <label for="username">Enter Username:</label>
+                  <input id="commentUsername" type="text" class="username" placeholder="Enter Username"><br>
+                  <label for="commentText0">Enter Comment:</label>
+                  <input id="commentText" type="text" class="commentText" placeholder="Enter Comment"><br>
+                  <button class="sendButton" onclick="addCommentToArticle(this)">Send</button>
               </div>
-              <div class="comments">
+              <div id="messageContainer" class="comments">
               </div>
           </div>
+          
+          
+
 
         </article>
 
@@ -92,22 +171,18 @@
           </div>
 
           <div class="article">
-            <button class="toggle-comment-form">Add Comment</button>
+            <button class="toggle-comment-form" onclick="toggleCommentForm(this)">Add Comment</button>
             <div class="comment-form" style="display: none;">
-                <form>
-                    <label for="commenterNickname">Commenter Nickname:</label>
-                  <input type="text" id="commenterNickname" name="commenterNickname"><br>
-          
-                  <label for="commentDate">Comment Date:</label>
-                  <input type="text" id="commentDate" name="commentDate"><br>
-          
-                  <label for="commentText">Write your comment here:</label>
-                  <textarea id="commentText" name="commentText"></textarea><br>
-                </form>
+                <label for="username">Enter Username:</label>
+                <input type="text" class="username" placeholder="Enter Username"><br>
+                <label for="commentText">Enter Comment:</label>
+                <input type="text" class="commentText" placeholder="Enter Comment"><br>
+                <button class="sendButton" onclick="addCommentToArticle(this)">Send</button>
             </div>
-            <div class="comments">
+            <div id="messageContainer" class="comments">
             </div>
         </div>
+        
      
 
         </article>
@@ -128,18 +203,13 @@
           </div>
  
           <div class="article">
-            <button class="toggle-comment-form">Add Comment</button>
+            <button class="toggle-comment-form" onclick="toggleCommentForm(this)">Add Comment</button>
             <div class="comment-form" style="display: none;">
-                <form>
-                    <label for="commenterNickname">Commenter Nickname:</label>
-                  <input type="text" id="commenterNickname" name="commenterNickname"><br>
-          
-                  <label for="commentDate">Comment Date:</label>
-                  <input type="text" id="commentDate" name="commentDate"><br>
-          
-                  <label for="commentText">Write your comment here:</label>
-                  <textarea id="commentText" name="commentText"></textarea><br>
-                </form>
+                <label for="username">Enter Username:</label>
+                <input type="text" class="username" placeholder="Enter Username"><br>
+                <label for="commentText">Enter Comment:</label>
+                <input type="text" class="commentText" placeholder="Enter Comment"><br>
+                <button class="sendButton" onclick="addCommentToArticle(this)">Send</button>
             </div>
             <div class="comments">
             </div>
@@ -163,18 +233,13 @@
           </div>
           
           <div class="article">
-            <button class="toggle-comment-form">Add Comment</button>
+            <button class="toggle-comment-form" onclick="toggleCommentForm(this)">Add Comment</button>
             <div class="comment-form" style="display: none;">
-                <form>
-                    <label for="commenterNickname">Commenter Nickname:</label>
-                  <input type="text" id="commenterNickname" name="commenterNickname"><br>
-          
-                  <label for="commentDate">Comment Date:</label>
-                  <input type="text" id="commentDate" name="commentDate"><br>
-          
-                  <label for="commentText">Write your comment here:</label>
-                  <textarea id="commentText" name="commentText"></textarea><br>
-                </form>
+                <label for="username">Enter Username:</label>
+                <input type="text" class="username" placeholder="Enter Username"><br>
+                <label for="commentText">Enter Comment:</label>
+                <input type="text" class="commentText" placeholder="Enter Comment"><br>
+                <button class="sendButton" onclick="addCommentToArticle(this)">Send</button>
             </div>
             <div class="comments">
             </div>
@@ -197,18 +262,13 @@
           </div>
            
           <div class="article">
-            <button class="toggle-comment-form">Add Comment</button>
+            <button class="toggle-comment-form" onclick="toggleCommentForm(this)">Add Comment</button>
             <div class="comment-form" style="display: none;">
-                <form>
-                    <label for="commenterNickname">Commenter Nickname:</label>
-                  <input type="text" id="commenterNickname" name="commenterNickname"><br>
-          
-                  <label for="commentDate">Comment Date:</label>
-                  <input type="text" id="commentDate" name="commentDate"><br>
-          
-                  <label for="commentText">Write your comment here:</label>
-                  <textarea id="commentText" name="commentText"></textarea><br>
-                </form>
+                <label for="username">Enter Username:</label>
+                <input type="text" class="username" placeholder="Enter Username"><br>
+                <label for="commentText">Enter Comment:</label>
+                <input type="text" class="commentText" placeholder="Enter Comment"><br>
+                <button class="sendButton" onclick="addCommentToArticle(this)">Send</button>
             </div>
             <div class="comments">
             </div>
@@ -232,18 +292,13 @@
           </div>
            
           <div class="article">
-            <button class="toggle-comment-form">Add Comment</button>
+            <button class="toggle-comment-form" onclick="toggleCommentForm(this)">Add Comment</button>
             <div class="comment-form" style="display: none;">
-                <form>
-                    <label for="commenterNickname">Commenter Nickname:</label>
-                  <input type="text" id="commenterNickname" name="commenterNickname"><br>
-          
-                  <label for="commentDate">Comment Date:</label>
-                  <input type="text" id="commentDate" name="commentDate"><br>
-          
-                  <label for="commentText">Write your comment here:</label>
-                  <textarea id="commentText" name="commentText"></textarea><br>
-                </form>
+                <label for="username">Enter Username:</label>
+                <input type="text" class="username" placeholder="Enter Username"><br>
+                <label for="commentText">Enter Comment:</label>
+                <input type="text" class="commentText" placeholder="Enter Comment"><br>
+                <button class="sendButton" onclick="addCommentToArticle(this)">Send</button>
             </div>
             <div class="comments">
             </div>
@@ -267,18 +322,13 @@
           </div>
            
           <div class="article">
-            <button class="toggle-comment-form">Add Comment</button>
+            <button class="toggle-comment-form" onclick="toggleCommentForm(this)">Add Comment</button>
             <div class="comment-form" style="display: none;">
-                <form>
-                    <label for="commenterNickname">Commenter Nickname:</label>
-                  <input type="text" id="commenterNickname" name="commenterNickname"><br>
-          
-                  <label for="commentDate">Comment Date:</label>
-                  <input type="text" id="commentDate" name="commentDate"><br>
-          
-                  <label for="commentText">Write your comment here:</label>
-                  <textarea id="commentText" name="commentText"></textarea><br>
-                </form>
+                <label for="username">Enter Username:</label>
+                <input type="text" class="username" placeholder="Enter Username"><br>
+                <label for="commentText">Enter Comment:</label>
+                <input type="text" class="commentText" placeholder="Enter Comment"><br>
+                <button class="sendButton" onclick="addCommentToArticle(this)">Send</button>
             </div>
             <div class="comments">
             </div>
