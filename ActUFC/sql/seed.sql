@@ -18,3 +18,7 @@ INSERT INTO Comments (CommentID, ArticleID, CommenterNickname, CommentDate, Comm
 VALUES
     (1, 1, 'FARES', '2023-05-21', 'COOL FIGHT BROS'),
     (2, 2, 'ARTHUR', '2023-05-22', 'i love mma');
+
+INSERT INTO BlogComments (Nickname, BlogComment)
+VALUES ('Farès', 'Great blog!'),
+       ('Nael', 'Go UFC!');
