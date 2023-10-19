@@ -2,58 +2,59 @@ const knexfile = require('./knexfile.js');
 const knex = require('knex')(knexfile.development);;
   
 const GetUFC = (req, res) => {
-console.log("the fighters are :");
+    console.log("the fighters are :");
 
-knex
-    .select()
-    .from('Fighters')
-    .then((rows) => {
-    res.status(200).json(rows);
-    })
-    .catch((error) => {
-    throw error;
-    });
+    knex
+        .select()
+        .from('Fighters')
+        .then((rows) => {
+        res.status(200).json(rows);
+        })
+        .catch((error) => {
+        throw error;
+        });
 };
 
 const addFighter = (req, res) => {
-const { FirstName, LastName, Nickname, WeightClass, Country } = req.body;
-
-knex('fighters') // Replace 'fighters' with the actual name of your table
-    .insert({
-    FirstName,
-    LastName,
-    Nickname,
-    WeightClass,
-    Country,
-    })
-    .then(() => {
-    res.status(201).send('Fighter added !');
-    })
-    .catch((error) => {
-    throw error;
-    });
+    const { FirstName, LastName, Nickname, WeightClass, Country } = req.body;
+    console.log("the fighter is being added");
+    knex('Fighters')
+        .insert({
+        FirstName,
+        LastName,
+        Nickname,
+        WeightClass,
+        Country,
+        })
+        .then(() => {
+        res.status(201).send('Fighter added !');
+        })
+        .catch((error) => {
+        throw error;
+        });
 };
 
 const addComment = (req, res) => {
 const { ArticleID, CommenterNickname, CommentDate, CommentText } = req.body;
+console.log("comment is being inserted");
 
 knex('Comments')
     .insert({
-    ArticleID,
-    CommenterNickname,
-    CommentDate,
-    CommentText,
+        ArticleID,
+        CommenterNickname,
+        CommentDate,
+        CommentText,
     })
     .then(() => {
-    res.status(201).send('Comment added !');
-    })
+        res.status(201).send('Comment added !');
+        })
     .catch((error) => {
-    throw error;
+        throw error;
     });
 };
 
 module.exports = {
-GetUFC,
-addFighter,
-addComment,
+    GetUFC,
+    addFighter,
+    addComment,
 };

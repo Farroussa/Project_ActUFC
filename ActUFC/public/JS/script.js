@@ -14,40 +14,39 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
-
-/*commentNumber = 2;
-function fillBoxes() {
-    commentNumber++;
-    const commentID = commentNumber;
+function submitComment(event) {
+    event.preventDefault();
+  
     const articleID = document.getElementById('articleID').value;
     const commenterNickname = document.getElementById('commenterNickname').value;
     const commentDate = document.getElementById('commentDate').value;
     const commentText = document.getElementById('commentText').value;
-
+  
     const commentInfo = {
-        CommentID: commentID,
-        ArticleID: articleID,
-        CommenterNickname: commenterNickname,
-        CommentDate: commentDate,
-        CommentText: commentText
+      ArticleID: articleID,
+      CommenterNickname: commenterNickname,
+      CommentDate: commentDate,
+      CommentText: commentText
     };
-    document.getElementById('filledInfo').innerHTML = JSON.stringify(commentInfo, null, 2);
+  
+    fillBoxes(commentInfo);
+  }
 
-    fetch('/createComment', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(commentInfo),
+function fillBoxes(commentInfo) {
+    fetch('/addComment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(commentInfo),
     })
-    .then(response => response.json())
-    .then(newComment => {
+      .then(response => response.json())
+      .then(newComment => {
         document.getElementById('filledInfo').innerHTML = JSON.stringify(newComment, null, 2);
-    })
-    .catch(error => {
+      })
+      .catch(error => {
         console.error('Error inserting comment:', error);
         alert('Failed to insert comment. Please try again.');
-    });
-}
-*/
+      });
+  }
+  
