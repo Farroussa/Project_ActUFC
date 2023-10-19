@@ -53,13 +53,12 @@ knex('Comments')
 };
 
 const addCommentBlog = (data) => {
-    const { CommenterNickname, CommentDate, CommentText } = data;
+    const { Nickname, BlogComment } = data;
 
-    return knex('Comments')
+    return knex('BlogComments')
         .insert({
-            CommenterNickname,
-            CommentDate,
-            CommentText,
+            Nickname,
+            BlogComment,
         })
         .then(() => {
             // Comment added successfully

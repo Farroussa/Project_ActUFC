@@ -38,3 +38,9 @@ CREATE TABLE Comments (
     CommentText TEXT,
     FOREIGN KEY (ArticleID) REFERENCES NewsArticles(ArticleID)
 );
+
+CREATE TABLE BlogComments (
+    BlogCommentID SERIAL PRIMARY KEY,
+    Nickname VARCHAR(100),
+    BlogComment VARCHAR(255),
+);

@@ -139,9 +139,8 @@
                     }
 
                     const commentData = {
-                        CommenterNickname: commenterNickname,
-                        CommentDate: new Date().toISOString(), // You can set the date however you want
-                        CommentText: commentText,
+                        Nickname: commenterNickname,
+                        BlogComment: commentText,
                     };
 
                     // Send the comment data to your backend
@@ -150,7 +149,9 @@
                         headers: {
                             'Content-Type': 'application/json',
                         },
+                        addCommentBlog(commentData),
                         body: JSON.stringify(commentData),
+                        
                     })
                         .then((response) => {
                             if (response.status === 201) {
