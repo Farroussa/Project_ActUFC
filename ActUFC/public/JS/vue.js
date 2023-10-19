@@ -1,4 +1,4 @@
-/*import Vue from 'vue/dist/vue.js';
+import Vue from 'vue/dist/vue.js';
 
 new Vue({ 
     el: '#vue-app',
@@ -19,4 +19,3 @@ new Vue({
         }    
     }
 });
-*/
