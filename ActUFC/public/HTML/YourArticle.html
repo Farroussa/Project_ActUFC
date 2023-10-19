@@ -111,7 +111,6 @@
 
 
             <script>
-                // api 2 this allows us to send a message o n the blog
                 const msgInput = document.getElementById('messageInput');
                 msgInput.style.display = "none";
                 const usernameInput = document.getElementById('username');
@@ -165,52 +164,6 @@
                             console.error(error);
                         });
                 }
-
-
-                function sendToDatabase() {
-                    sendmsg.style.display = "none";
-                    msgInput.style.display = "none";
-                    send.style.display = "none";
-                    usernameInput.style.display = "none";
-                    sendmsg.style.display = "";
-
-                    const commenterNickname = document.getElementById('username').value;
-                    const commentText = document.getElementById('messageInput').value;
-                    const commentDate = new Date().toISOString();
-
-                    const data = {
-                        CommenterNickname: commenterNickname,
-                        CommentDate: commentDate,
-                        CommentText: commentText
-                    };
-
-                    if (commentText !== "" && commenterNickname !== "") {
-                        // Call the addCommentBlog function from controller.js
-                        addCommentBlog(data); // Pass the data as an argument
-                    }
-                }
-            
-                
-                /*function envoyerMessage() {
-                    sendmsg.style.display="none";
-                    var messageInput = document.getElementById("messageInput");
-                    var messageText = messageInput.value.trim();
-                    msgInput.style.display = "none";
-                    send.style.display = "none";
-                    sendmsg.style.display = "";
-                    if (messageText !== "") {
-                        var messageContainer = document.getElementById("messageContainer");
-                        var messageDiv = document.createElement("div");
-                        messageDiv.className = "box";
-                        messageDiv.innerText = messageText;
-
-                        // Insère le nouveau message au début de la liste des messages
-                        messageContainer.insertBefore(messageDiv, messageContainer.firstChild);
-
-                        // Efface le champ de texte après avoir envoyé le message
-                        messageInput.value = "";
-                    }
-                }*/
 
             </script>
         </main>
