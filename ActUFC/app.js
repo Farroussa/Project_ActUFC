@@ -2,16 +2,17 @@ const express = require('express');
 const UFCRoutes = require('./routes');
 
 const app = express();
+
 const port = process.env.PORT || 3000;
 
+const controller = require('./controller');
+
 app.use(express.json());
-//app.use(express.static('public'));
+app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-    res.send("Hello World!");
-    //res.sendFile(__dirname + '/public/HTML/Accueil.html');
-  });
-
+//this line was added by the teacher.
+app.get('/', controller.GetUFC)
+   
 app.use('/api/v1/UFC', UFCRoutes);  
 
 app.listen(port, () => {

@@ -1,10 +1,12 @@
-import Vue from 'vue/dist/vue.js';
+//const Vue = require('vue/dist/vue.js');
 
-new Vue({ 
+const app = Vue.createApp({ 
     el: '#vue-app',
-    data: {
-        health: 100,
-        ended: false
+    data() {
+        return {
+            health: 100,
+            ended: false
+        }
     },
     methods: { 
         punch: function(){ 
@@ -16,6 +18,10 @@ new Vue({
         restart: function(){ 
             this.health = 100;
             this.ended = false;
-        }    
+        },
+        updateHealth: function(){
+            return this.health +'%';
+        } 
     }
 });
+
